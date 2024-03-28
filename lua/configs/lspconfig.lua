@@ -17,7 +17,6 @@ local servers = {
   "gopls",
   "jsonls",
   "autotools_ls",
-  "pyright",
   "sqlls",
   "solidity",
   "taplo",

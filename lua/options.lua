@@ -6,12 +6,38 @@ require "nvchad.options"
 -- o.cursorlineopt ='both' -- to enable cursorline!
 -- local 
 require("mason").setup({
-    ui = {
-        icons = {
-            package_installed = "✓",
-            package_pending = "➜",
-            package_uninstalled = "o",
-        },
+  ui = {
+    icons = {
+      package_installed = "✓",
+      package_pending = "➜",
+      package_uninstalled = "o",
     },
+  },
 })
+
+require('dap-go').setup()
+
+local dap = require('dap')
+-- adapter
+dap.adapters.lldb = {
+  name = 'lldb',
+  type = 'executable',
+  command = ' /Users/los/homebrew/opt/llvm/bin/lldb-vscode ', -- adjust as needed, must be absolute path
+}
+
+-- configuration
+dap.configurations.lldb = {
+  name = 'Launch',
+  type = 'lldb',
+  request = 'launch',
+  program = function()
+    return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+  end,
+  cwd = '${workspaceFolder}',
+  stopOnEntry = false,
+  args = {}
+}
+
+dap.configurations.c = dap.configurations.cpp
+dap.configurations.rust = dap.configurations.cpp
 

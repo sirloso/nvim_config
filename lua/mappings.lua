@@ -12,3 +12,12 @@ map("n", "<leader>C", ":OutlineOpen<CR>")
 -- map leader + oc to close outline
 map("n", "<leader>Oc", ":OutlineClose<CR>")
 
+-- overrides <leader>b to open bufferline to <leader>bn
+map("n", "<leader>bn", ":Buffer New<CR>")
+
+-- quit mapping
+map("n", "<leader>q", ":q<CR>")
+
+-- go to reference
+map("n", "<leader>gr", "<cmd>lua vim.lsp.buf.references()<CR>")
+-- list all incoming calls
