@@ -72,7 +72,6 @@ return {
     end
   },
   { 'alexghergh/nvim-tmux-navigation',
-
     config = function()
       require'nvim-tmux-navigation'.setup {
         disable_when_zoomed = true, -- defaults to false
@@ -86,5 +85,26 @@ return {
         }
       }
     end
+  },
+  {
+    'jubnzv/virtual-types.nvim',
+    config = function ()
+      require('virtual-types').setup()
+    end
+  },
+  {
+    'nvimdev/lspsaga.nvim',
+    config = function()
+      require('lspsaga').setup()
+    end,
+    require = {
+      'nvim-treesitter/nvim-treesitter',
+    }
+  },
+  {
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    ft = { "markdown" },
+    build = function() vim.fn["mkdp#util#install"]() end,
   }
 }
