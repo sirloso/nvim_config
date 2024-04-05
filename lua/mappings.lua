@@ -20,4 +20,10 @@ map("n", "<leader>q", ":q<CR>")
 
 -- go to reference
 map("n", "<leader>gr", "<cmd>lua vim.lsp.buf.references()<CR>")
--- list all incoming calls
+
+-- add break point
+map("n", "<C-b>", "<cmd>lua require'dap'.toggle_breakpoint()<CR>")
+-- open dap-ui
+map("n", "<C-d>t", "<cmd>lua require'dapui'.toggle()<CR>")
+-- close dap-go
+map("n", "<leader>go", "<cmd>lua require('dap').continue()<CR>")

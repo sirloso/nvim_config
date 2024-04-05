@@ -56,8 +56,8 @@ return {
   {
     "nvim-neotest/nvim-nio",
     config = function()
-      require("nvim-nio").setup()
-    end
+    end,
+    lazy = false
   },
   {
     "ldelossa/litee.nvim",
@@ -106,5 +106,22 @@ return {
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
     ft = { "markdown" },
     build = function() vim.fn["mkdp#util#install"]() end,
+  },
+  {
+    "nvim-dap-virtual-text",
+    config = function()
+      require("dap-virtual-text").setup()
+    end
+  },
+  {
+    "nvim-dap-virtual-text",
+    config = function()
+      require("dap-virtual-text").setup()
+    end
+  },
+  {
+    'mrcjkb/rustaceanvim',
+    version = '^4', -- Recommended
+    ft = { 'rust' },
   }
 }
