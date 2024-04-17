@@ -8,7 +8,7 @@ local servers = {
   "html",
   "cssls",
   "rust_analyzer",
-  "pyright",
+  "pylint",
   "tsserver",
   "clangd",
   "cmake",
@@ -19,7 +19,7 @@ local servers = {
   "autotools_ls",
   "sqlls",
   "solidity",
-  "taplo",
+  "taplo"
 }
 
 -- lsps with default config

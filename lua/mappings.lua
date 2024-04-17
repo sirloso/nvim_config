@@ -27,3 +27,5 @@ map("n", "<C-b>", "<cmd>lua require'dap'.toggle_breakpoint()<CR>")
 map("n", "<C-d>t", "<cmd>lua require'dapui'.toggle()<CR>")
 -- close dap-go
 map("n", "<leader>go", "<cmd>lua require('dap').continue()<CR>")
+-- debug test above cursor
+map("n", "<C-d>lt", "<cmd>lua require'dap-go'.debug_test()<CR>")

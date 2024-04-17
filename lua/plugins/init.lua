@@ -5,13 +5,13 @@ return {
     config = function()
       require "configs.conform"
     end,
-  }, {
+  },
+  {
     "github/copilot.vim",
-    lazy = false
   },
   {
     "nvim-tree/nvim-tree.lua",
-    lazy = false,
+    -- lazy = false,
     opts = {
       view = {
         side = "right"
@@ -118,10 +118,5 @@ return {
     config = function()
       require("dap-virtual-text").setup()
     end
-  },
-  {
-    'mrcjkb/rustaceanvim',
-    version = '^4', -- Recommended
-    ft = { 'rust' },
   }
 }
