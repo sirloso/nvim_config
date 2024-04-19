@@ -71,21 +71,6 @@ return {
       require("litee.calltree").setup()
     end
   },
-  { 'alexghergh/nvim-tmux-navigation',
-    config = function()
-      require'nvim-tmux-navigation'.setup {
-        disable_when_zoomed = true, -- defaults to false
-        keybindings = {
-          left = "<C-h>",
-          down = "<C-j>",
-          up = "<C-k>",
-          right = "<C-l>",
-          last_active = "<C-\\>",
-          next = "<C-Space>",
-        }
-      }
-    end
-  },
   {
     'jubnzv/virtual-types.nvim',
     config = function ()
@@ -118,5 +103,39 @@ return {
     config = function()
       require("dap-virtual-text").setup()
     end
-  }
+  },
+  {
+    'rmagatti/auto-session',
+    config = function()
+      require("auto-session").setup {
+        log_level = "error",
+        auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/"},
+      }
+    end
+  },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      ensure_installed = {
+        -- defaults 
+        "vim",
+        "lua",
+        "vimdoc",
+
+        -- web dev 
+        "html",
+        "css",
+        "javascript",
+        "typescript",
+        "tsx",
+        "python",
+        "rust",
+        "go",
+
+        -- low level
+        "c",
+        "cpp"
+      },
+    },
+  },
 }

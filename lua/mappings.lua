@@ -29,3 +29,12 @@ map("n", "<C-d>t", "<cmd>lua require'dapui'.toggle()<CR>")
 map("n", "<leader>go", "<cmd>lua require('dap').continue()<CR>")
 -- debug test above cursor
 map("n", "<C-d>lt", "<cmd>lua require'dap-go'.debug_test()<CR>")
+
+-- remove in line virtual 
+vim.diagnostic.config({
+  virtual_text = false, -- Turn off inline diagnostics
+})
+
+map( 'n', '<Leader>di', ':lua vim.diagnostic.open_float()<CR>', { noremap = true, silent = true })
+
+
