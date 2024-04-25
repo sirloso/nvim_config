@@ -22,8 +22,6 @@ map("n", "<leader>q", ":q<CR>")
 map("n", "<leader>gr", "<cmd>lua vim.lsp.buf.references()<CR>")
 -- show refernces list in telescope
 map("n", "<leader>fr", "<cmd>lua require('telescope.builtin').lsp_references()<CR>")
-
-
 -- add break point
 map("n", "<C-b>", "<cmd>lua require'dap'.toggle_breakpoint()<CR>")
 -- open dap-ui
@@ -33,11 +31,15 @@ map("n", "<leader>go", "<cmd>lua require('dap').continue()<CR>")
 -- debug test above cursor
 map("n", "<C-d>lt", "<cmd>lua require'dap-go'.debug_test()<CR>")
 
+-- horizontal split
+map("n", "<C-w>c", "<cmd>:split<CR>")
+
 -- remove in line virtual 
 vim.diagnostic.config({
   virtual_text = false, -- Turn off inline diagnostics
 })
 
+-- move lsp diagnostics to popup window
 map( 'n', '<Leader>di', ':lua vim.diagnostic.open_float()<CR>', { noremap = true, silent = true })
 
 
