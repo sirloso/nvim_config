@@ -8,9 +8,9 @@ map("i", "jk", "<ESC>")
 
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
 map("n", "<C-s>", "<cmd> w <cr>")
-map("n", "<leader>C", ":OutlineOpen<CR>")
+map("n", "<leader>C", ":Outline<CR>")
 -- map leader + oc to close outline
-map("n", "<leader>Oc", ":OutlineClose<CR>")
+-- map("n", "<leader>Oc", ":OutlineClose<CR>")
 
 -- overrides <leader>b to open bufferline to <leader>bn
 map("n", "<leader>bn", ":Buffer New<CR>")
@@ -18,8 +18,11 @@ map("n", "<leader>bn", ":Buffer New<CR>")
 -- quit mapping
 map("n", "<leader>q", ":q<CR>")
 
--- go to reference
+-- show refernces list
 map("n", "<leader>gr", "<cmd>lua vim.lsp.buf.references()<CR>")
+-- show refernces list in telescope
+map("n", "<leader>fr", "<cmd>lua require('telescope.builtin').lsp_references()<CR>")
+
 
 -- add break point
 map("n", "<C-b>", "<cmd>lua require'dap'.toggle_breakpoint()<CR>")

@@ -131,6 +131,11 @@ return {
         "python",
         "rust",
         "go",
+        "json",
+        "dockerfile",
+        "markdown",
+        "sql",
+        "proto",
 
         -- low level
         "c",
