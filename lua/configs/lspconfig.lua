@@ -8,18 +8,15 @@ local servers = {
   "html",
   "cssls",
   "rust_analyzer",
-  "pylint",
   "tsserver",
   "clangd",
   "cmake",
   "denols",
   "dockerls",
   "gopls",
-  "jsonls",
   "autotools_ls",
   "sqlls",
-  "solidity",
-  "taplo"
+  "taplo",
 }
 
 -- lsps with default config

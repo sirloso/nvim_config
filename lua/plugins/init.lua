@@ -122,6 +122,7 @@ return {
         "python",
         "rust",
         "go",
+        "solidity",
         "json",
         "dockerfile",
         "markdown",
