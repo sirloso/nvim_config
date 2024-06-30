@@ -33,6 +33,9 @@ map("n", "<C-d>lt", "<cmd>lua require'dap-go'.debug_test()<CR>")
 
 -- horizontal split
 map("n", "<C-w>c", "<cmd>:split<CR>")
+-- format json
+--
+map('n',"<leader>jq",":%!jq '.'")
 
 -- remove in line virtual 
 vim.diagnostic.config({
