@@ -7,7 +7,7 @@ local lspconfig = require "lspconfig"
 local servers = {
   "html",
   "cssls",
-  "rust_analyzer",
+  "rust-analyzer",
   "clangd",
   "pyright",
   "cmake",
@@ -16,6 +16,7 @@ local servers = {
   "autotools_ls",
   "sqlls",
   "taplo",
+  "graphql",
 }
 
 -- lsps with default config

@@ -128,7 +128,7 @@ return {
         "markdown",
         "sql",
         "proto",
-
+        "graphql",
         -- low level
         "c",
         "cpp"
