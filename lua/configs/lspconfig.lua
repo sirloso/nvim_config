@@ -7,7 +7,7 @@ local lspconfig = require "lspconfig"
 local servers = {
   "html",
   "cssls",
-  "rust-analyzer",
+  "rust_analyzer",
   "clangd",
   "pyright",
   "cmake",
