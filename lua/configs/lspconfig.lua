@@ -17,6 +17,15 @@ local servers = {
   "sqlls",
   "taplo",
   "graphql",
+  "ast_grep",
+  "eslint",
+  "graphql",
+  "html",
+  "htmx",
+  "lua_ls",
+  "sqlls",
+  "tsserver",
+  "solc",
 }
 
 -- lsps with default config
