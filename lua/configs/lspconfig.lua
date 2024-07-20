@@ -26,6 +26,7 @@ local servers = {
   "sqlls",
   "tsserver",
   "solc",
+  "bufls"
 }
 
 -- lsps with default config
