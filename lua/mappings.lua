@@ -45,4 +45,7 @@ vim.diagnostic.config({
 -- move lsp diagnostics to popup window
 map( 'n', '<Leader>di', ':lua vim.diagnostic.open_float()<CR>', { noremap = true, silent = true })
 
+map( 'n', '<Leader>di', ':lua vim.diagnostic.open_float()<CR>', { noremap = true, silent = true })
 
+-- overwrite new terminal so it's always present in tabs
+map( 'n', '<Leader>v', ':term<cr>')
