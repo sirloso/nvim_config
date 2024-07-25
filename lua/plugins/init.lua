@@ -93,13 +93,7 @@ return {
     build = function() vim.fn["mkdp#util#install"]() end,
   },
   {
-    "nvim-dap-virtual-text",
-    config = function()
-      require("dap-virtual-text").setup()
-    end
-  },
-  {
-    "nvim-dap-virtual-text",
+    "theHamsta/nvim-dap-virtual-text",
     config = function()
       require("dap-virtual-text").setup()
     end
@@ -153,5 +147,12 @@ return {
   keys = {
     { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" }
   }
+  },
+  {
+    "terrortylor/nvim-comment",
+    lazy=false,
+    config = function()
+      require("nvim_comment").setup()
+    end
   }
 }
