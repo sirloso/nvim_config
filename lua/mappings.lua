@@ -1,6 +1,9 @@
 require "nvchad.mappings"
 
--- add yours here
+-- set folding behavior
+vim.opt.foldmethod = "indent"
+vim.opt.foldlevelstart = 99
+
 local map = vim.keymap.set
 
 map("n", ";", ":", { desc = "CMD enter command mode" })
