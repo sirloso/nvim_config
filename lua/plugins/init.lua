@@ -154,5 +154,8 @@ return {
     config = function()
       require("nvim_comment").setup()
     end
+  },
+  {
+  'ldelossa/nvim-dap-projects'
   }
 }
