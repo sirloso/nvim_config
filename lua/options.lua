@@ -48,6 +48,9 @@ dap.configurations.rust = {
       return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/target/debug', 'file')
     end,
     cwd = '${workspaceFolder}',
+    args = function()
+      return vim.fn.input('args for executable: ')
+    end,
     stopOnEntry = false,
   },
   {

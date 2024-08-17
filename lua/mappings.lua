@@ -52,3 +52,5 @@ map( 'n', '<Leader>di', ':lua vim.diagnostic.open_float()<CR>', { noremap = true
 map( 'n', '<Leader>v', ':term<cr>')
 
 map( 'n', '<S-K>', ':lua vim.lsp.buf.hover()<cr>')
+
+map("n", "<C-d>d", "<cmd>:DapNew<CR>")
