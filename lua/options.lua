@@ -49,12 +49,17 @@ dap.configurations.rust = {
     end,
     cwd = '${workspaceFolder}',
     args = function()
-      return vim.fn.input('args for executable: ')
+      local user_input = vim.fn.input('args for executable: ')
+      local items = {}
+      for item in string.gmatch(user_input, "%S+") do
+        table.insert(items, item)
+      end
+      return items
     end,
     stopOnEntry = false,
   },
   {
-    name = "Launch specific test",
+    name = "Launch last test",
     type = "codelldb",
     request = "launch",
     program = function()
@@ -63,6 +68,6 @@ dap.configurations.rust = {
       return last_test
     end,
     cwd = '${workspaceFolder}',
-    stopOnEntry = false,
+    stopOnEntry = true,
   },
 }

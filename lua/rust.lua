@@ -1,6 +1,7 @@
 local function build_rust_tests()
   print("Building Rust tests...")
-  local build_pipe = io.popen('cargo test --no-run 2>&1')
+  local build_pipe = io.popen('cargo test')
+  -- local build_pipe = io.popen('cargo test --no-run 2>&1')
   local build_result = build_pipe:read("*a")
   build_pipe:close()
   
