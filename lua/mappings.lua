@@ -1,8 +1,8 @@
 require "nvchad.mappings"
 
 -- set folding behavior
-vim.opt.foldmethod = "indent"
-vim.opt.foldlevelstart = 99
+-- vim.opt.foldmethod = "indent"
+-- vim.opt.foldlevelstart = 99
 
 local map = vim.keymap.set
 
