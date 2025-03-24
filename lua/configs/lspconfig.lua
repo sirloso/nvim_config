@@ -25,7 +25,6 @@ local servers = {
   "lua_ls",
   "sqlls",
   "tsserver",
-  "solc",
   "bufls"
 }
 
