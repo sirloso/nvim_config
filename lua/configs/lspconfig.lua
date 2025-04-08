@@ -24,9 +24,9 @@ local servers = {
   "htmx",
   "lua_ls",
   "sqlls",
-  "tsserver",
-  "solc",
-  "bufls"
+  "deno",
+  "buf",
+  "solidity_ls"
 }
 
 -- lsps with default config
