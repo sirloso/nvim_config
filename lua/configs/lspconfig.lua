@@ -18,17 +18,13 @@ local servers = {
   "taplo",
   "graphql",
   "ast_grep",
+  "eslint",
   "graphql",
   "html",
   "htmx",
   "lua_ls",
   "sqlls",
-  "deno_ls",
-  "buf",
-  "solidity_ls",
-  "typescript",
-  "typescriptreact",
-  "typescript.tsx"
+  "solidity_ls"
 }
 
 -- lsps with default config
@@ -40,58 +36,50 @@ for _, lsp in ipairs(servers) do
   }
 end
 
--- Helper function to get Deno path
-local function get_deno_cmd()
-  local handle = io.popen("which deno")
-  local result = handle:read("*a")
-  handle:close()
-  -- Remove trailing newline
-  result = result:gsub("[\n\r]", "")
-  return result
-end
-
-local function get_buf_cmd()
-  local handle = io.popen("which buf")
-  local result = handle:read("*a")
-  handle:close()
-  -- Remove trailing newline
-  result = result:gsub("[\n\r]", "")
-  return result
-end
-
--- Get Deno path
--- local deno_path = get_deno_cmd()
-local buf_path = get_buf_cmd()
-
--- lspconfig.denols.setup {
---   cmd = { deno_path, "lsp" },  -- Specify the exact path to your Deno binary
---   capabilities = capabilities,
---   on_attach = on_attach,
---   root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
---   init_options = {
---     enable = true,
---     lint = true,
---     unstable = false,
---     suggest = {
---       imports = {
---         hosts = {
---           ["https://deno.land"] = true,
---           ["https://cdn.nest.land"] = true,
---           ["https://crux.land"] = true
---         }
---       }
---     }
---   }
--- }
-
 lspconfig.clangd.setup {
   filetypes = { "c", "cpp", "objc", "objcpp", "cuda" }, -- Remove 'proto' from this list
 }
 
-lspconfig.bufls.setup{
-  filetypes = { "proto" },
-  cmd = { buf_path, "beta", "lsp"},
+local function get_python_path()
+  -- Check for UV's default .venv location
+  local uv_venv = vim.fn.getcwd() .. '/.venv/bin/python'
+  if vim.fn.executable(uv_venv) == 1 then
+    return uv_venv
+  end
+
+  -- Check for traditional venv location
+  local venv_path = vim.fn.getcwd() .. '/venv/bin/python'
+  if vim.fn.executable(venv_path) == 1 then
+    return venv_path
+  end
+
+  -- Fallback to system Python
+  return vim.fn.exepath("python3") or vim.fn.exepath("python")
+end
+
+-- Configure Pyright with venv support
+-- Pyright is the stable, mature choice for Python type checking
+lspconfig.pyright.setup {
   on_attach = on_attach,
   on_init = on_init,
   capabilities = capabilities,
+  before_init = function(_, config)
+    local python_path = get_python_path()
+    config.settings = vim.tbl_deep_extend("force", config.settings or {}, {
+      python = {
+        pythonPath = python_path,
+      }
+    })
+  end,
+  settings = {
+    python = {
+      pythonPath = get_python_path(),
+      analysis = {
+        typeCheckingMode = "basic", -- or "standard" or "strict"
+        autoSearchPaths = true,
+        useLibraryCodeForTypes = true,
+        diagnosticMode = "workspace",
+      }
+    }
+  }
 }
