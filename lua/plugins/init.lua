@@ -160,5 +160,5 @@ return {
   },
   {
     'fatih/vim-go'
-  }
+  },
 }
