@@ -25,7 +25,7 @@ local servers = {
   "lua_ls",
   "sqlls",
   "solidity_ls",
-  "ts_ls"
+  "tsserver"
 }
 
 -- lsps with default config
