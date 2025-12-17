@@ -25,7 +25,8 @@ local servers = {
   "lua_ls",
   "sqlls",
   "solidity_ls",
-  "tsserver"
+  "tsserver",
+  "ruff"
 }
 
 -- lsps with default config
@@ -76,7 +77,7 @@ lspconfig.pyright.setup {
     python = {
       pythonPath = get_python_path(),
       analysis = {
-        typeCheckingMode = "basic", -- or "standard" or "strict"
+        typeCheckingMode = "strict", -- or "standard" or "strict"
         autoSearchPaths = true,
         useLibraryCodeForTypes = true,
         diagnosticMode = "workspace",
@@ -84,3 +85,27 @@ lspconfig.pyright.setup {
     }
   }
 }
+
+require('lspconfig').ruff_lsp.setup({
+  init_options = {
+    settings = {
+      lineLength = 100,
+      select = {
+        "E",   -- pycodestyle errors
+        "F",   -- pyflakes
+        "I",   -- isort
+        "ANN", -- flake8-annotations
+        "UP",  -- pyupgrade
+        "B",   -- flake8-bugbear
+        "C4",  -- flake8-comprehensions
+      },
+      ignore = {
+        "ANN101", -- missing type annotation for self
+        "ANN102", -- missing type annotation for cls
+      },
+      -- Optional ruff-specific settings
+      fixAll = true, -- enable fix all code actions
+      organizeImports = true,
+    }
+  }
+})
