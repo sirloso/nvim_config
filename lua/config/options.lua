@@ -12,3 +12,15 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 })
 
 vim.opt.relativenumber = false
+
+vim.opt.laststatus = 3 -- global statusline
+vim.opt.fillchars = {
+  vert = "│",
+  horiz = "─",
+  horizup = "┴",
+  horizdown = "┬",
+  vertleft = "┤",
+  vertright = "├",
+  verthoriz = "┼",
+}
+vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#444444" })

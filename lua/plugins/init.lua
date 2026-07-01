@@ -1,14 +1,22 @@
 return {
-  -- Copilot
-  { "github/copilot.vim" },
-
+  {
+    "greggh/claude-code.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim", -- Required for git operations
+    },
+    config = function()
+      require("claude-code").setup()
+    end,
+  },
   -- Formatting
-  -- {
-  --   "stevearc/conform.nvim",
-  --   config = function()
-  --     require("configs.conform")
-  --   end,
-  -- },
+  {
+    "stevearc/conform.nvim",
+    opts = {
+      formatters_by_ft = {
+        json = { "jq" },
+      },
+    },
+  },
 
   -- Outline
   {
@@ -185,9 +193,14 @@ return {
   {
     "folke/snacks.nvim",
     opts = {
+      bigfile = {
+        size = 1.5 * 1024 * 1024, -- 1.5MB, raise as needed
+      },
       picker = {
         sources = {
           explorer = {
+            hidden = true,
+            ignored = true,
             layout = {
               layout = {
                 position = "right",

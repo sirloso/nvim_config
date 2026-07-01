@@ -62,5 +62,7 @@ vim.keymap.set("v", "<leader>/", "gc", { remap = true, desc = "Toggle comment" }
 vim.keymap.set("n", "<Tab>", "<cmd>bnext<cr>", { desc = "Next buffer" })
 vim.keymap.set("n", "<S-Tab>", "<cmd>bprev<cr>", { desc = "Prev buffer" })
 
-vim.keymap.set("n", "<leader>fm", "<leader>cf", { remap = true, desc = "Format buffer" })
+vim.keymap.set("n", "<leader>fm", function()
+  require("conform").format({ async = true, lsp_fallback = true })
+end, { desc = "Format buffer" })
 vim.keymap.set("n", "<leader>fw", "<leader>sg", { remap = true, desc = "grep" })
