@@ -5,7 +5,59 @@ return {
       "nvim-lua/plenary.nvim", -- Required for git operations
     },
     config = function()
-      require("claude-code").setup()
+      local claude_code = require("claude-code")
+
+      claude_code.setup({
+        window = {
+          position = "vertical",
+        },
+        keymaps = {
+          toggle = {
+            normal = false,
+            terminal = false,
+          },
+        },
+      })
+
+      -- Instead of a split, open Claude Code by swapping the current
+      -- window's buffer (and swap back on toggle-off).
+      local function toggle_claude_in_place()
+        local bufnr = claude_code.claude_code.instances[claude_code.claude_code.current_instance]
+
+        if bufnr and vim.api.nvim_buf_is_valid(bufnr) then
+          if vim.api.nvim_get_current_buf() == bufnr then
+            vim.cmd("buffer #")
+          else
+            vim.cmd("buffer " .. bufnr)
+            vim.cmd("startinsert")
+          end
+          return
+        end
+
+        -- First run: let the plugin create the terminal (it will open a
+        -- split), then close that split and take over the buffer here.
+        local origin_win = vim.api.nvim_get_current_win()
+        claude_code.toggle()
+
+        vim.schedule(function()
+          local new_bufnr = claude_code.claude_code.instances[claude_code.claude_code.current_instance]
+          if not new_bufnr then
+            return
+          end
+          local wins = vim.fn.win_findbuf(new_bufnr)
+          for _, win in ipairs(wins) do
+            if win ~= origin_win then
+              vim.api.nvim_win_close(win, true)
+            end
+          end
+          vim.api.nvim_set_current_win(origin_win)
+          vim.cmd("buffer " .. new_bufnr)
+          vim.cmd("startinsert")
+        end)
+      end
+
+      vim.keymap.set({ "n" }, "<C-,>", toggle_claude_in_place, { desc = "Toggle Claude Code (in place)" })
+      vim.keymap.set("t", "<C-,>", toggle_claude_in_place, { desc = "Toggle Claude Code (in place)" })
     end,
   },
   -- Formatting
