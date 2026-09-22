@@ -7,7 +7,8 @@ return {
     config = function()
       require("claude-code").setup({
         window = {
-          position = "vertical",
+          position = "tab split", -- full-editor tab instead of a side/bottom split
+          split_ratio = 1.0, -- fill the tab; the plugin resizes by this ratio after splitting
         },
       })
     end,
@@ -214,5 +215,29 @@ return {
         },
       },
     },
+  },
+
+  -- Mason: install everything listed in installed_mason.txt (synced across machines)
+  {
+    "mason-org/mason.nvim",
+    opts = function(_, opts)
+      local file = vim.fn.stdpath("config") .. "/installed_mason.txt"
+      local ok, lines = pcall(vim.fn.readfile, file)
+      if not ok then
+        return
+      end
+      opts.ensure_installed = opts.ensure_installed or {}
+      local seen = {}
+      for _, pkg in ipairs(opts.ensure_installed) do
+        seen[pkg] = true
+      end
+      for _, line in ipairs(lines) do
+        local pkg = vim.trim(line)
+        if pkg ~= "" and not pkg:match("^#") and not seen[pkg] then
+          seen[pkg] = true
+          table.insert(opts.ensure_installed, pkg)
+        end
+      end
+    end,
   },
 }
